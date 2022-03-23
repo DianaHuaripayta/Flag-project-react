@@ -1,25 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// import {store} from './app/store'
+import styled,{ ThemeProvider } from 'styled-components'
+import UseDarkMode from './styles/useDarkMode'
+import Toggle from './Toggle'
+import {GlobalStyle, lightTheme, darkTheme} from './styles/globalStyles'
+import ApiAxios from './app/apiAxios';
+import HomePage from './pages/homePage'
 
 function App() {
+ const  [darkMode, _handleToggleTheme]: "light" | "dark" | (() => void)| any  = UseDarkMode(); 
+ const themeMode = darkMode === 'light' ? darkTheme : lightTheme
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    // <Provider store={store}> 
+        <ThemeProvider theme={themeMode}>
+            <GlobalStyle/>
+            <Toggle darkMode={darkMode} _handleToggleTheme={_handleToggleTheme}/>
+            <HomePage/>
+          <ApiAxios/>
+        </ThemeProvider>
+    // </Provider>
+    
+  
   );
 }
 
