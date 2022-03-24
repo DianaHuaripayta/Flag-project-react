@@ -6,18 +6,21 @@ export const GlobalStyle = createGlobalStyle`
     transition: all .5s linear;
     font-family: 'Nunito', sans-serif;
   }
-  .btn-primary{
-    background: ${({ theme }) => theme.primary};
+  .headerStyledGlobal{
+    background: ${({ theme }) => theme.element};
+    transition: all .5s linear;
   }
 `
 
 export const lightTheme = {
     body: '#ffff',
     text: '#12121',
-    primary: '#6200ee'
-}
+    primary: '#6200ee',
+    element: '#ffff',
+  }
 export const darkTheme = {
-    body: '#121212',
+    body: '#202c37',
     text: '#ffff',
-    primary: '#bb86fc'
+    primary: '#bb86fc',
+    element: '#2b3945',
 }

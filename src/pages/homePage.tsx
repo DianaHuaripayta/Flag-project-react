@@ -1,20 +1,15 @@
 import React from 'react'
 import styled from 'styled-components';
-import Layout from '../layout/header/header'
+import Country from '../components/Country';
+import SectionMain from '../components/sectionSearch/SectionMain';
 const WrapperStyled = styled.div`
   margin-top: 8rem;
 `;
 export default function HomePage() {
   return (
-    <>
     <WrapperStyled>
-      <div>oulet---</div>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, facilis?</p>
+      <SectionMain/>
+      <Country/>
     </WrapperStyled>
-    
-    </>
-    
-    // <WrapperStyled>
-/* <Layout/> */
   )
 }

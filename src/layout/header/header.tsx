@@ -11,19 +11,14 @@ const ContainerMainStyled = styled.div`
     top: 0;
     position: absolute;
     padding: 16px 0px;
-    box-shadow: 0 0.0625em 0.5em rgba(0, 0, 0, 0.3);
-    /* ::after{ 
-      bottom: 0;
-      box-shadow: 0 0.0625em 0.5em rgba(0, 0, 0, 0.3);
-      content: '';
-    } */
+    box-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 10%), 0 0.2rem 0.1rem rgb(0 0 0 / 5%);
     .title{
       margin: 15px 60px 5px;
     }
 `;  
 export default function header() {
   return (
-    <ContainerMainStyled>
+    <ContainerMainStyled className='headerStyledGlobal'>
         <h1 className='title'>Around the world</h1>
     </ContainerMainStyled>
   )
