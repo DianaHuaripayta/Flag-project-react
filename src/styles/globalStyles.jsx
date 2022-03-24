@@ -1,10 +1,10 @@
 import { createGlobalStyle } from "styled-components"
-
 export const GlobalStyle = createGlobalStyle`
   body {
     background: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.text};
     transition: all .5s linear;
+    font-family: 'Nunito', sans-serif;
   }
   .btn-primary{
     background: ${({ theme }) => theme.primary};

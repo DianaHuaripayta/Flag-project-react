@@ -2,17 +2,18 @@ import React, { useState, useEffect } from 'react'
 
 export default function UseDarkMode() {
 const [darkMode, setDarkMode] = useState('dark');
-const setMode = (mode) => {
+
+const setMode = mode => {
   window.localStorage.setItem('darkMode', mode)
   setDarkMode(mode)
 }
 
 const _handleToggleTheme = () =>  {
-  darkMode === 'dark' ? setDarkMode('light') : setDarkMode('dark')
+  darkMode === 'dark' ? setMode('light') : setMode('dark')
 }
 
 useEffect(()=>{
-  const localTheme= window.localStorage.getItem('darkMode'); 
+  const localTheme = window.localStorage.getItem('darkMode'); 
   localTheme ? setDarkMode(localTheme) : setMode('dark');
 }, [])
 
