@@ -1,37 +1,25 @@
-import { createSlice, configureStore } from '@reduxjs/toolkit'
+import { combineReducers } from '@reduxjs/toolkit'
+import { createStore } from 'redux'
+const initialState = { 
+  countryList: []
+}
 
-const counterSlice = createSlice({
-  name: 'counter',
-  initialState: {
-    value: 0
-  },
-  reducers: {
-    incremented: state => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.value += 1
-    },
-    decremented: state => {
-      state.value -= 1
-    }
+function reducer (state: any, action: any) {
+  console.log(action, 'action')
+  switch (action.type) {
+    case 'SET_COUNTRY_LIST': 
+      return {...state, countryList:action.payload  }//el nuevo estado - es decir lo mute
+    default:
+      return state
   }
-})
+}
+export const rootReducer = combineReducers({
+  countryList: reducer,
+});
 
-export const { incremented, decremented } = counterSlice.actions
+export const store = createStore(reducer, initialState)
+export type RootState = ReturnType<typeof rootReducer>
 
-export const store = configureStore({
-  reducer: counterSlice.reducer
-})
 
-// Can still subscribe to the store
-store.subscribe(() => console.log(store.getState()))
 
-// Still pass action objects to `dispatch`, but they're created for us
-store.dispatch(incremented())
-// {value: 1}
-store.dispatch(incremented())
-// {value: 2}
-store.dispatch(decremented())
-// {value: 1}
+
