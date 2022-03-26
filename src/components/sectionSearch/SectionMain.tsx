@@ -1,12 +1,20 @@
 import React from 'react'
 import Search from './search'
-import SelectLabels from './SelectLabels'
+import SelectRegion from './SelectRegion'
+import styled from 'styled-components'
+import RadioButtonsGroup from './select'
 
-export default function SectionMain() {
+const WrapperStyled = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    z-index: 900;
+`
+export default function SectionRenderFilters() {
   return (
-    <div>
+    <WrapperStyled>
       <Search/>
-      <SelectLabels/>
-    </div>
+      <RadioButtonsGroup/>
+    </WrapperStyled>
   )
 }
