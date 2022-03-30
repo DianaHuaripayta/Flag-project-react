@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import CardsCountry from './CardsCountry'
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../app/store';
+import { State } from '../app/store';
+
 const WrapperCardStyled = styled.div`
     display: flex;
     flex-wrap: wrap;
@@ -13,10 +14,20 @@ const WrapperCardStyled = styled.div`
     padding: 1em 1em;
 `;
 export default function Country() {
-  const dispach = useDispatch()
+  const dispatch = useDispatch()
   // const [countryList, setCountryList] = useState([])
-  const countryList = useSelector((state: RootState ) => state.countryList) //el estado espera un array vacio -> ver en store
+  const countryListByName = useSelector((state: State ) => state.countryListByName) //el estado espera un array vacio -> ver en store
   
+  const countryList = useSelector((state: State) => {
+    if (state.filterByRegion !== '' && countryListByName.length === 0) {
+      return state.coutryFilteredByRegion;
+    }
+    if (countryListByName.length > 0) {
+      return countryListByName
+    }
+
+    return state.countryList;
+  })
   console.log('el estado global es ', countryList)  
   useEffect(() => {
    fetch('https://restcountries.com/v2/all')
@@ -24,7 +35,7 @@ export default function Country() {
       return response.json()
    })
    .then((list) => {
-    dispach ({
+    dispatch ({
       type: 'SET_COUNTRY_LIST',
       payload: list,
     })
@@ -33,7 +44,7 @@ export default function Country() {
   .catch(() => {
     console.log('error')
   })
-  },[])
+  },[dispatch])
   return (
     <WrapperCardStyled>
       {countryList.map(({name,flag,region}:any) =>{//destructurar datos del api 
