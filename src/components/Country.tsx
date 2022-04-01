@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components';
 import CardsCountry from './CardsCountry'
-import { useSelector, useDispatch } from 'react-redux';
-import { State } from '../app/store';
 
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { setCountryList } from '../features/listSlice';
 const WrapperCardStyled = styled.div`
     display: flex;
     flex-wrap: wrap;
@@ -14,40 +14,53 @@ const WrapperCardStyled = styled.div`
     padding: 1em 1em;
 `;
 export default function Country() {
-  const dispatch = useDispatch()
-  // const [countryList, setCountryList] = useState([])
-  const countryListByName = useSelector((state: State ) => state.countryListByName) //el estado espera un array vacio -> ver en store
-  
-  const countryList = useSelector((state: State) => {
-    if (state.filterByRegion !== '' && countryListByName.length === 0) {
-      return state.coutryFilteredByRegion;
-    }
-    if (countryListByName.length > 0) {
-      return countryListByName
-    }
+  const dispatch = useAppDispatch();
+  const catState = useAppSelector(state => state.listCountry)
+    useEffect(()=>{
+      (async()=>{
+      const catData = await fetch('https://restcountries.com/v2/all')
+          .then(response => response.json());
+              console.log(catData)
+              dispatch(setCountryList(catData))
+      })();
 
-    return state.countryList;
-  })
-  console.log('el estado global es ', countryList)  
-  useEffect(() => {
-   fetch('https://restcountries.com/v2/all')
-   .then((response) => {
-      return response.json()
-   })
-   .then((list) => {
-    dispatch ({
-      type: 'SET_COUNTRY_LIST',
-      payload: list,
-    })
-    console.log(list.length)
-  })
-  .catch(() => {
-    console.log('error')
-  })
-  },[dispatch])
+  },[])
+  // const [countryList, setCountryList] = useState([]) - countryListByName
+  // const countryListByName = useAppSelector((state) => state.counter.value) //el estado espera un array vacio -> ver en store
+  
+  // const countryList = useAppSelector((state) => {
+  //   if (state.filterByRegion !== '' && countryListByName.length === 0) {
+  //     return state.coutryFilteredByRegion;
+  //   }
+  //   if (countryListByName.length > 0) {
+  //     return countryListByName
+  //   }
+
+  //   return state.countryList;
+  // })  dispatch(actions.countryList)
+//    console.log('el estado global es ', countryListByName)  
+//   useEffect(() => {
+//    fetch('https://restcountries.com/v2/all')
+//    .then((response) => {
+//       return response.json()
+//    })
+//    .then((list) => {
+//     dispatch ({
+//       type: 'SET_COUNTRY_LIST',
+//       payload: list,
+// })
+//     console.log(list.length)
+//   })
+//   .catch(() => {
+//     console.log('error')
+//   })
+//   },[dispatch])
   return (
     <WrapperCardStyled>
-      {countryList.map(({name,flag,region}:any) =>{//destructurar datos del api 
+      <div>{catState && <ul>
+        {catState.map(catItem=> <li key={catItem.name}>{catItem.name}</li>)}
+        </ul>}</div>
+      {/* {countryListByName.map(({name,flag,region}:any) =>{//destructurar datos del api 
          return(
           <CardsCountry key={name}
           name={name} 
@@ -55,7 +68,7 @@ export default function Country() {
           region={region}/>
          ) 
       })}
-        
+         */}
     </WrapperCardStyled>
     
   )
