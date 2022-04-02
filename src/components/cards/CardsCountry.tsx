@@ -52,6 +52,6 @@ const CardsCountry = ((prop: IProps) => {
         </SectionNameStyles>
     </ContainerCardStyled>
   )
-  
+    
 })
 export default CardsCountry

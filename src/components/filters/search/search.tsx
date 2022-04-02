@@ -1,22 +1,23 @@
 import React, { useState } from 'react'
 import InputSearch from './inputSearch';
-import { useDispatch } from 'react-redux'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import { useAppDispatch } from '../../../hooks';
+import { setCountryByName } from '../../../features/listSlice';
 export default function SearchFC() {
   const [inputValue, setInputValue] = useState('')
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const filterByName = (e: { target: { value: React.SetStateAction<string>; }; }) => {
     setInputValue(e.target.value)
     dispatch({
-      type: 'SET_COUNTRY_BY_NAME',
+      type: setCountryByName,
       payload: e.target.value
     })
   }
 
   const clearInput = () => {
     dispatch({
-      type: 'SET_COUNTRY_BY_NAME',
+      type: setCountryByName,
       payload: ''
     })
     setInputValue('')

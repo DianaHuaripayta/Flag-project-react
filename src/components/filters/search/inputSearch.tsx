@@ -18,7 +18,6 @@ const InputStyled = styled.label`
     color: #C4C4C4;
   }
   input {
-    
     flex: 1;
     border: none;
     height: 48px;
