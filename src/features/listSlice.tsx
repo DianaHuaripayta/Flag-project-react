@@ -36,9 +36,9 @@ const countrySlices = createSlice({
             const { regionSelected } = action.payload ;
 
             if ('' === regionSelected) {
-                state.countryFilteredByRegion: [];
-                state.filterByRegion: '';
-                // return { ...state, countryFilteredByRegion: [], filterByRegion: '', };
+                // state.countryFilteredByRegion: [];
+                // state.filterByRegion: '';
+                 return { ...state, countryFilteredByRegion: [], filterByRegion: '', };
             }
 
             const countryFilteredByRegion = state.countryList.filter((country: { region: any; }) => country.region === regionSelected);

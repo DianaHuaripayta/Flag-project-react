@@ -10,7 +10,6 @@ const WrapperStyled = styled.div`
     flex-direction: row;
     justify-content: space-evenly;
     z-index: 900;
-    background: blue;
 `
 export default function SectionRenderFilters() {
   return (

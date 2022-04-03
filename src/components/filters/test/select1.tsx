@@ -1,7 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { setFilterByRegion } from '../../../features/listSlice';
-import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { useAppDispatch } from '../../../hooks';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 const RegionFilterStyled = styled.div`
 .dropdown {
   border-radius: 5px;
@@ -57,8 +58,6 @@ const filterByRegionAction = (regionSelected: any) => {
     };
 }    
 
-// const filterByRegion = useAppSelector((state) => state.filterByRegion);
-
 const onRegionChange = (selectEvent: string) => {
     dispatch(
         filterByRegionAction(selectEvent)
@@ -71,7 +70,7 @@ const onRegionChange = (selectEvent: string) => {
 
     <div className={`${dropdown?'dropdown open':'dropdown'}`} onClick={()=> setdropdown(!dropdown)} id="filter">
           Filter by Region
-          <i className="fas fa-chevron-down"></i>
+          <ArrowDropDownIcon/>
           <ul>
             <li onClick={()=>onRegionChange('Africa')}>Africa</li>
             <li onClick={()=>onRegionChange('Americas')}>Americas</li>

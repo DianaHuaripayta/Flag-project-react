@@ -5,7 +5,6 @@ import { setCountryList } from '../../features/listSlice';
 import CardsCountry from './CardsCountry';
 
 const WrapperCardStyled = styled.div`
-background: yellow;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
