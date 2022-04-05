@@ -1,12 +1,27 @@
 import * as React from 'react';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
+import { useAppSelector } from '../../hooks';
 
-export default function PaginationButtons() {
+
+export default function Pagination() {
+  const [curretPage, setCurretPage] = React.useState(1)
+  const [itemPerPage, setItemPerPage] = React.useState(5)
+  const countriesTotalData = useAppSelector(state => state.countryList)
+  const pages: number[] =[];
+
+  for (let i = 1; i <= Math.ceil(countriesTotalData.length/itemPerPage); i++) {
+    pages.push(i)   
+  }
+
   return (
-    <Stack spacing={2}>
-      <Pagination count={10} showFirstButton showLastButton />
-    </Stack>
+    <>
+    {pages.map((number)=>{
+      return(
+        <li key={number}>
+          {number}
+        </li>
+      )
+    })}
+    </>
   );
 }
 
