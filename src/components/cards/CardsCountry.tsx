@@ -1,4 +1,6 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React from 'react'
+import { useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 const ContainerCardStyled = styled.div`
     display: flex;
@@ -40,10 +42,17 @@ interface IProps {
   name:  String,
   flag: any,
   region: String,
+  onClick:any,
 }
+
+
 const CardsCountry = ((prop: IProps) => {
+let navigate = useNavigate();
+const handleClick = () => {
+  navigate(`/cardPage/${prop.name}`)
+}
   return (
-    <ContainerCardStyled className='cardDark'>
+    <ContainerCardStyled className='cardDark' onClick={handleClick}>
         <div className='sectionImg'>
         <ImgCardStyled loading="lazy" src={prop.flag} alt="flag" />{/* loading lazy loads the first part that is shown on the screen, then, when scrolling down, loading the rest */}
         </div>
