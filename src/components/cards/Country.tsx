@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setCountryList } from '../../features/listSlice';
 import CardsCountry from './CardsCountry';
+import Pagination from '../pagination/Pagination';
 
 const WrapperCardStyled = styled.div`
     display: flex;
@@ -13,12 +14,15 @@ const WrapperCardStyled = styled.div`
     max-width: 1138px;  
     padding: 1em 1em;
 `;
+
 export default function Country() {
 
 const dispatch = useAppDispatch();
 const axios = require('axios');
 const countryListByName = useAppSelector(state => state.countryListByName)
-
+// here
+const [currentPage, setcurrentPage] = useState(1);
+const [itemsPerPage, setitemsPerPage] = useState(5);
 
 useEffect(()=>{
   // Make a request for a user with a given ID
@@ -43,10 +47,19 @@ useEffect(()=>{
     return state.countryList;
   })
 
+  const pages = [];
+  for (let i = 1; i <= Math.ceil(countryList.length / itemsPerPage); i++) {
+    pages.push(i);
+  }
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = countryList.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
     <WrapperCardStyled>
-      {countryList.map(({name,flag,region}:any) =>{//destructured datos del api 
+      
+      {currentItems.map(({name,flag,region}:any) =>{//destructured datos del api 
          return(
           <>
           <CardsCountry key={name}
@@ -57,7 +70,10 @@ useEffect(()=>{
           </>
          ) 
       })}
-        
+      <Pagination 
+      setcurrentPage={setcurrentPage} 
+      itemsPerPage={itemsPerPage}
+      setitemsPerPage={setitemsPerPage}/>
     </WrapperCardStyled>
     
   )
