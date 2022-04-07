@@ -14,6 +14,15 @@ const WrapperCardStyled = styled.div`
     max-width: 1138px;  
     padding: 1em 1em;
 `;
+const LengthStyled = styled.p`
+    font-size: 18px;
+    position: absolute;
+    left: 39px;
+    top: 124px;
+    span{
+      font-weight: bold ;
+    }
+`;
 
 export default function Country() {
 
@@ -58,7 +67,7 @@ useEffect(()=>{
   const length =  currentItems.length
   return (
     <>
-    <p>countries : {length} </p>
+    <LengthStyled>Countries : <span>{length}</span> </LengthStyled>
     <WrapperCardStyled>
 
       {currentItems.map(({ name, flag, region }: any) => {

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import SearchIcon from '@mui/icons-material/Search';
 
 const InputStyled = styled.label`
-  width: 30rem;
+  /* width: 30rem;
     height: 3.5rem;
     background-color: '#ffff';
     border-radius: 0.375rem;
@@ -12,7 +12,7 @@ const InputStyled = styled.label`
     justify-content: center;
     align-items: center;
     position: relative;
-    transition: background-color .2s ease-in-out;
+    transition: background-color .2s ease-in-out; */
   .IconSearch {
     margin: 1em;
     color: #C4C4C4;
