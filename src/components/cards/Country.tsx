@@ -57,24 +57,31 @@ useEffect(()=>{
   const currentItems = countryList.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
+    <>
     <WrapperCardStyled>
-      
-      {currentItems.map(({name,flag,region}:any) =>{//destructured datos del api 
-         return(
+
+      {currentItems.map(({ name, flag, region }: any) => {
+        return (
           <>
-          <CardsCountry key={name}
-             name={name}
-             flag={flag}
-             region={region}
-             onClick={name} />
+            <CardsCountry key={name}
+              name={name}
+              flag={flag}
+              region={region}
+              onClick={name} />
           </>
-         ) 
+        );
       })}
-      <Pagination 
-      setcurrentPage={setcurrentPage} 
-      itemsPerPage={itemsPerPage}
-      setitemsPerPage={setitemsPerPage}/>
+
     </WrapperCardStyled>
+    <Pagination
+        currentPage={currentPage}
+        setcurrentPage={setcurrentPage}
+        itemsPerPage={itemsPerPage}
+        setitemsPerPage={setitemsPerPage}
+        pages={pages} 
+      />
+      
+    </>
     
   )
 }
