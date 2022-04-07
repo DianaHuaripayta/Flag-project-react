@@ -55,9 +55,10 @@ useEffect(()=>{
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = countryList.slice(indexOfFirstItem, indexOfLastItem);
-
+  const length =  currentItems.length
   return (
     <>
+    <p>countries : {length} </p>
     <WrapperCardStyled>
 
       {currentItems.map(({ name, flag, region }: any) => {
