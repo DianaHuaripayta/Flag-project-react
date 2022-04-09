@@ -1,9 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import Country from '../components/cards/Country';
-import SearchDemo from '../components/filters/search/SearchDemo';
 import SectionRenderFilters from '../components/filters/SectionMain';
-import SelectVariants from '../components/filters/test/UseSelect';
 import BasicSpeedDial from '../components/social/SpeedDial';
 
 const WrapperStyled = styled.div`
@@ -12,9 +10,7 @@ const WrapperStyled = styled.div`
 export default function HomePage() {
   return (
     <WrapperStyled>
-      <SectionRenderFilters/>
-      {/* <SearchDemo/> */}
-      
+      <SectionRenderFilters/>      
       <Country/>
       <BasicSpeedDial/>
     </WrapperStyled>

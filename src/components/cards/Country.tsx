@@ -28,8 +28,7 @@ export default function Country() {
 
 const dispatch = useAppDispatch();
 const axios = require('axios');
-const countryListByName = useAppSelector(state => state.countryListByName)
-// here
+const countryListByName = useAppSelector(state => state.countryListByName)// here
 const [currentPage, setcurrentPage] = useState(1);
 const [itemsPerPage, setitemsPerPage] = useState(5);
 
@@ -53,9 +52,10 @@ useEffect(()=>{
     if (countryListByName.length > 0) {
       return countryListByName
     }
+    
     return state.countryList;
   })
-
+  
   const pages = [];
   for (let i = 1; i <= Math.ceil(countryList.length / itemsPerPage); i++) {
     pages.push(i);
@@ -70,16 +70,18 @@ useEffect(()=>{
     <LengthStyled>Countries : <span>{length}</span> </LengthStyled>
     <WrapperCardStyled>
 
-      {currentItems.map(({ name, flag, region }: any) => {
-        return (
-          <>
-            <CardsCountry key={name}
-              name={name}
-              flag={flag}
-              region={region}
-              onClick={name} />
-          </>
-        );
+      {currentItems.map(({ name, flag, region , alpha2Code}: any) => {
+          return (
+            <>
+              <CardsCountry key={name}
+                name={name}
+                flag={flag}
+                region={region}
+                onClick={name} 
+                alpha2Code= {alpha2Code}
+                />
+            </>
+          );
       })}
 
     </WrapperCardStyled>

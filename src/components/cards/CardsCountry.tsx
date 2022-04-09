@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React from 'react'
 import { useNavigate } from "react-router-dom";
+import slugify from 'slugify';
 import styled from 'styled-components';
 const ContainerCardStyled = styled.div`
     display: flex;
@@ -39,17 +40,19 @@ const SectionNameStyles = styled.div`
     }
 `;
 interface IProps {
-  name:  String,
+  name:  String|any,
   flag: any,
   region: String,
   onClick:any,
+  alpha2Code:string
 }
 
 
 const CardsCountry = ((prop: IProps) => {
 let navigate = useNavigate();
 const handleClick = () => {
-  navigate(`/cardPage/${prop.name}`)
+  navigate(`/country/${slugify(prop.name.toLowerCase())}`)
+  // navigate(`/country/${prop.name.toLowerCase()}`)
 }
   return (
     <ContainerCardStyled className='cardDark' onClick={handleClick}>

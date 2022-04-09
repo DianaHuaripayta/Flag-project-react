@@ -1,8 +1,7 @@
 import React from 'react'
 import Search from './search/search'
 import styled from 'styled-components'
-import RadioButtonsGroup from './select/select'
-import UseSelect from './test/UseSelect'
+import UseSelect from './dropdown/UseSelect'
 
 const WrapperStyled = styled.div`
     display: flex;
@@ -14,7 +13,6 @@ export default function SectionRenderFilters() {
   return (
     <WrapperStyled>
       <Search/>
-      {/* <RadioButtonsGroup/> */}
       <UseSelect/>
     </WrapperStyled>
   )

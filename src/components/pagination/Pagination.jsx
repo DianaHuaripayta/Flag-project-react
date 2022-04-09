@@ -20,7 +20,7 @@ const handleLoadMore = () => {
 const handlePrevin = () => {
   props.setcurrentPage(props.currentPage - 1);
 
-  if ((props.currentPage - 1) % pageNumberLimit == 0) {
+  if ((props.currentPage - 1) % pageNumberLimit === 0) {
     setmaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
     setminPageNumberLimit(minPageNumberLimit - pageNumberLimit);
   }

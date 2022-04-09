@@ -1,12 +1,27 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useAppSelector } from '../hooks'
 
 export default function CardPage() {
+
+  const boxCountries = useAppSelector(state => state.countryList)
+console.log(boxCountries)
+  let Name;
+  // boxCountries.forEach((element: { name: string | undefined; }) => {
+  //     if (element.name ===  ) {
+  //       Name = element.name
+  //     }
+  // });
+  // const country = useAppSelector(state=> state.countryList.find((item: any) => item === match.param.id))
   return (
     <>
-    <h1>CardPage</h1>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum laudantium molestiae facilis! Necessitatibus, ipsa, atque corporis minus, facere nihil natus vitae dolores vel eveniet numquam molestiae totam! Tenetur sit maxime iure labore doloremque magni consequuntur quas, iusto provident? Ab architecto eos aperiam quo ullam minima aliquid. Minima, eius reprehenderit! Fugit?</p>
-    <button> <Link to="/">Dashboard</Link></button>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, pariatur.</p>
+  
+    
+    <button>Back</button>
     </>
   )
 }
+function useParams() {
+  throw new Error('Function not implemented.');
+}
+
