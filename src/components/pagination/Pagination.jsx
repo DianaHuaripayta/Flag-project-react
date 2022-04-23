@@ -54,12 +54,16 @@ const renderPageNumbers = props.pages.map((number) => {
   if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
     return (
       <LiStyled
-        key={number}
+        key={number.toString()}
         id={number}
         onClick={handleClick}
         className={props.currentPage === number ? 'active' : null}
       >
-        {number}
+        <div>
+          {number}
+        {console.log(number)}
+        </div>
+        
       </LiStyled>
     );
   } else {

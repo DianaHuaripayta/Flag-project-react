@@ -18,7 +18,7 @@ export const RoutesApp = () => {
           <RoutesRoot>
             <Route path="/" element={<Layout />}>
               <Route index element={<HomePage />} />
-              <Route path="/country/:name" element={<SelectedCard />} />
+              <Route path="/country/:id" element={<SelectedCard />} />
               <Route path="*" element={<NotFound />} />
             </Route>
           </RoutesRoot>

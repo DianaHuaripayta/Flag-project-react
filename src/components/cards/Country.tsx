@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setCountryList } from '../../features/listSlice';
 import CardsCountry from './CardsCountry';
 import Pagination from '../pagination/Pagination';
+import axios from 'axios';
 
 const WrapperCardStyled = styled.div`
     display: flex;
@@ -27,7 +28,6 @@ const LengthStyled = styled.p`
 export default function Country() {
 
 const dispatch = useAppDispatch();
-const axios = require('axios');
 const countryListByName = useAppSelector(state => state.countryListByName)// here
 const [currentPage, setcurrentPage] = useState(1);
 const [itemsPerPage, setitemsPerPage] = useState(5);
@@ -72,15 +72,15 @@ useEffect(()=>{
 
       {currentItems.map(({ name, flag, region , alpha2Code}: any) => {
           return (
-            <>
-              <CardsCountry key={name}
+            <div key={name}>
+              <CardsCountry 
                 name={name}
                 flag={flag}
                 region={region}
                 onClick={name} 
                 alpha2Code= {alpha2Code}
                 />
-            </>
+            </div>
           );
       })}
 

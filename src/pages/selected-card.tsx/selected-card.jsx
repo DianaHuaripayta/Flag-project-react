@@ -4,24 +4,42 @@ import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import axios from 'axios';
 import { setCountryList } from '../../features/listSlice';
+import DetailsSelectedCard from './DetailsSelectedCard'
 export default function SelectedCard() {
   // let {id} = useParams()
-  const {name}=useParams() 
+  const {id}=useParams() 
   // let params = useParams();
-  let DBcountry = useAppSelector((state) => state.countryList.filter(item => item.name === name))
+  let DBcountry = useAppSelector((state) => state.countryList.find(item => item.alpha2Code === id))
   
    const [country, setCountry] = useState(DBcountry)
   console.log(country)
-   useEffect(()=>{
-     axios.get(`https://restcountries.eu/rest/v2/alpha/${name.toLocaleLowerCase()}`)
-      .then((response) => {
-        console.log(country, 'country')
-        setCountry(response.data)
-      })
-      .catch((error) =>  {
-        console.log(error, 'error');
-      })
-  },[country,name])
+
+  useEffect(() => {
+
+    if (!country) {
+      axios.get(`https://restcountries.eu/rest/v2/alpha/${id}`)
+          .then((response) => {
+            console.log(country, 'country')
+            setCountry(response.data)
+          })
+          .catch((error) =>  {
+            console.log(error, 'error');
+          })
+    }
+  }, [country,id])
+
+
+  //  useEffect(()=>{
+  //    axios.get(`https://restcountries.eu/rest/v2/alpha/${id}`)
+  //     .then((response) => {
+  //       console.log(country, 'country')
+  //       setCountry(response.data)
+  //     })
+  //     .catch((error) =>  {
+  //       console.log(error, 'error');
+  //     })
+  // },[country,id])
+
 //   const dispatch=useAppDispatch()
 //   const countries = useAppSelector((state) => state.countryList)
 //   const [currentCountry, setCurrentCountry]=React.useState(countries.filter(country=>country.name===name))
@@ -38,9 +56,7 @@ export default function SelectedCard() {
 
   return (
     <>
-
-    <img src= { country.flag} alt="" />
-    <h1>{ country.name}</h1>
+    <DetailsSelectedCard country={country}/>
     </>  
   )
 }

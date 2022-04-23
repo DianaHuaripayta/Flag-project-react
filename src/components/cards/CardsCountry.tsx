@@ -40,10 +40,10 @@ const SectionNameStyles = styled.div`
     }
 `;
 interface IProps {
-  name:  String|any,
-  flag: any,
-  region: String,
-  onClick:any,
+  name:  string,
+  flag: string,
+  region: string,
+  onClick: Function,
   alpha2Code:string
 }
 
@@ -51,11 +51,12 @@ interface IProps {
 const CardsCountry = ((prop: IProps) => {
 let navigate = useNavigate();
 const handleClick = () => {
-  navigate(`/country/${slugify(prop.name.toLowerCase())}`)
+  navigate(`/country/${slugify(prop.alpha2Code)}`)
+  console.log(prop.alpha2Code)
   // navigate(`/country/${prop.name.toLowerCase()}`)
 }
   return (
-    <ContainerCardStyled className='cardDark' onClick={handleClick}>
+    <ContainerCardStyled className='cardDark' onClick={handleClick} key= {prop.name}>
         <div className='sectionImg'>
         <ImgCardStyled loading="lazy" src={prop.flag} alt="flag" />{/* loading lazy loads the first part that is shown on the screen, then, when scrolling down, loading the rest */}
         </div>

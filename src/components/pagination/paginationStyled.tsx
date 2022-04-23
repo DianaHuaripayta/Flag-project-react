@@ -6,7 +6,7 @@ export const PaginationStyled = styled.section`
   flex-direction: column;   
   justify-content: center;
 `
-export const PageNumbersStyled = styled.li`
+export const PageNumbersStyled = styled.div`
     list-style: none;
     display: flex;
     justify-content: center;
